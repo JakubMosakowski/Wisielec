@@ -13,7 +13,7 @@ int i,il,licz,proba=10;
 	scanf("%s",gracz2);
 	printf("%s podaj ilość liter w słowie:",gracz1);
 	scanf("%d",&il);
-	getchar();
+	while('\n'!=getchar());
 	char tab[il], tab2[il];
 	for(i=0;i<il;i++)
 		tab2[i]='_';
@@ -22,7 +22,7 @@ int i,il,licz,proba=10;
 	printf("%s podaj słowo:",gracz1);
 	for(i=0;i<il;i++)
 		scanf("%1c",&tab[i]);
-	getchar();
+	while('\n'!=getchar());
 
 	for(i=0;i<70;i++)
 		printf("\n");
@@ -30,8 +30,8 @@ int i,il,licz,proba=10;
 	while(proba>0)
 	{
 		printf("%s podaj jedną literę: ",gracz2);
-		scanf("%1c",&lit);
-		getchar();
+		lit = getchar();
+		while('\n'!=getchar());
 		licz=0;
 	
 		for(i=0;i<il;i++)
