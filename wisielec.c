@@ -1,18 +1,29 @@
 #include<stdio.h>
 #include<string.h>
+#include<ctype.h>
 #include "obrazek.c"
 
 int main()
 {
-char lit;
+char lit,ilC;
 char gracz1[20],gracz2[20];
-int i,il,licz,proba=10;
+int i,licz,proba=10;
 	printf("Podaj nazwę gracza numer 1:");
 	scanf("%s",gracz1);
+	while('\n'!=getchar());
 	printf("Podaj nazwę gracza numer 2:");
 	scanf("%s",gracz2);
+	while('\n'!=getchar());
 	printf("%s podaj ilość liter w słowie:",gracz1);
-	scanf("%d",&il);
+	scanf("%c",&ilC);
+	while(!(isdigit(ilC)) || ilC == 0 || ilC >= 99){
+		//MUSI BYĆ KOMUNIKAT
+		//Musi działać dla dwucyfrowych (może strol?)
+		//musi być różne od 0 i mniejsze równe od 99
+		//to ma sprawdzić czy tylko cyfra została wprowadzona
+		scanf("%c",&ilC);
+	}
+	int il = ilC - '0';
 	while('\n'!=getchar());
 	char tab[il], tab2[il];
 	for(i=0;i<il;i++)
@@ -20,8 +31,10 @@ int i,il,licz,proba=10;
 
 
 	printf("%s podaj słowo:",gracz1);
-	for(i=0;i<il;i++)
+	for(i=0;i<il;i++){
 		scanf("%1c",&tab[i]);
+		tab[i]=toupper(tab[i]);
+	}
 	while('\n'!=getchar());
 
 	for(i=0;i<70;i++)
@@ -30,7 +43,9 @@ int i,il,licz,proba=10;
 	while(proba>0)
 	{
 		printf("%s podaj jedną literę: ",gracz2);
+		//TU JESZCZE SPRAWDZENIE CZY WPROWADZONA ZOSTAŁA LITERA
 		lit = getchar();
+		lit = toupper(lit);
 		while('\n'!=getchar());
 		licz=0;
 	
@@ -70,7 +85,12 @@ int i,il,licz,proba=10;
 	}
 	if(proba==0)
 	{
-		printf("%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n",gracz2,gracz1);
+		printf("Hasło to: ");//PRZETESTUJ TO
+		for(i=0;i<il;i++)
+		{
+			printf("%c",tab2[i]);
+		}
+		printf("\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n",gracz2,gracz1);
 	}
 	return 0;
 }	
