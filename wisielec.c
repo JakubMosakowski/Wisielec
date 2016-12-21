@@ -1,98 +1,119 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
-#include "obrazek.c"
+#include "f_obrazek.c"//That function is drawing image.
 
+/* [c] Jakub Mosakowski 12.2016
+	Simple game: "Hangman" - "Wisielec"
+*/
 int main()
 {
-char lit,ilC;
-char gracz1[20],gracz2[20];
-int i,licz,proba=10;
+	char lit;
+	char gracz1[20],gracz2[20],slowo[30];
+	int i,il=0,licz,proba=10,flaga=0,flaga2=0;
+
+	for(i=0;i<30;i++)
+		slowo[i]='_';
+	printf("\n\nWitaj w grze \"Hangman\" - \"Wisielec\".\n");
+	printf("	Życzę Ci dobrej zabawy!\n\n");
 	printf("Podaj nazwę gracza numer 1:");
 	scanf("%s",gracz1);
 	while('\n'!=getchar());
 	printf("Podaj nazwę gracza numer 2:");
 	scanf("%s",gracz2);
 	while('\n'!=getchar());
-	printf("%s podaj ilość liter w słowie:",gracz1);
-	scanf("%c",&ilC);
-	while(!(isdigit(ilC)) || ilC == 0 || ilC >= 99){
-		//MUSI BYĆ KOMUNIKAT
-		//Musi działać dla dwucyfrowych (może strol?)
-		//musi być różne od 0 i mniejsze równe od 99
-		//to ma sprawdzić czy tylko cyfra została wprowadzona
-		scanf("%c",&ilC);
+	printf("%s podaj jedno słowo:",gracz1);
+
+	do{//Checking input = is it letter or not.
+		il=0;
+		if(flaga==1 || flaga2==1)
+			printf("Twoje słowo może zawierać tylko litery! Podaj je ponownie:");
+		scanf("%s",slowo);
+		flaga=0;
+		flaga2=0;
+		for(i=0;i<30;i++){
+			if((slowo[i]>96 && slowo[i]<123) || (slowo[i]>64 && slowo[i]<91))
+				il++;
+			else if(slowo[i]!=0 && slowo[i]!='_'){
+				flaga=1;
+				for(i=0;i<30;i++)
+					slowo[i]='_';
+			}	
+		}
+		for(i=0;i<il;i++)
+			if(slowo[i]=='_')
+				flaga2=1;
+	}while(flaga==1 || flaga2==1);
+	char slowo2[il],pustaTab[il];
+
+	for(i=0;i<il;i++){// From lower case to upper case.
+		slowo[i]=toupper(slowo[i]);
+		slowo2[i]=slowo[i];
+		pustaTab[i]='_';
 	}
-	int il = ilC - '0';
-	while('\n'!=getchar());
-	char tab[il], tab2[il];
-	for(i=0;i<il;i++)
-		tab2[i]='_';
-
-
-	printf("%s podaj słowo:",gracz1);
-	for(i=0;i<il;i++){
-		scanf("%1c",&tab[i]);
-		tab[i]=toupper(tab[i]);
-	}
 	while('\n'!=getchar());
 
-	for(i=0;i<70;i++)
+	for(i=0;i<250;i++)// Clearing screen.
 		printf("\n");
 	printf("%s masz %d prób.\n",gracz2,proba);
 	while(proba>0)
 	{
 		printf("%s podaj jedną literę: ",gracz2);
-		//TU JESZCZE SPRAWDZENIE CZY WPROWADZONA ZOSTAŁA LITERA
 		lit = getchar();
-		lit = toupper(lit);
 		while('\n'!=getchar());
+		while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
+			printf("Powinieneś podać literę! Spróbuj ponownie:");
+			lit = getchar();
+			while('\n'!=getchar());
+		}
+		lit = toupper(lit);
 		licz=0;
 	
 		for(i=0;i<il;i++)
 		{
 			
-			if (tab[i]==lit)
+			if (slowo2[i]==lit)
 			{
 				licz=licz+1;
-				tab2[i]=tab[i];
+				pustaTab[i]=slowo2[i];
 			}
 		}
 		if(licz<1)
 		{
 			printf("\nNie ma litery %c. \n",lit);
 			proba=proba-1;
-			obrazek(proba);
+			f_obrazek(proba);
 		}
 		else
 		{
 			printf("\nLitera %c jest w wyrazie.\nIlość: %d\n",lit,licz);	
-			obrazek(proba);
+			f_obrazek(proba);
 		}
+		printf("Hasło: ");
 		for(i=0;i<il;i++)
 		{
-			printf("%c",tab2[i]);
+			printf("%c",pustaTab[i]);
 		}		
-		if( strcmp(tab,tab2)!=0 )
+		if( strcmp(slowo2,pustaTab)!=0 )
 		{
-			printf("\nZostało Ci %d prób.\n\n",proba);
+			printf("\n\nZostało Ci %d prób.\n\n",proba);
+			printf("-------------------------------------------------\n\n");
 		}
 		else
 		{
-			printf("\nGratulacje, zgadłeś!\n%s wygrywa!\n",gracz2);
+			printf("\n\n-------------------------------------------------\n\n");
+			printf("\nGratulacje, zgadłeś!\n%s wygrywa!\n\n\n",gracz2);
 			proba=-1;
 		}
 	}
 	if(proba==0)
 	{
-		printf("Hasło to: ");//PRZETESTUJ TO
+		printf("\nHasło to: ");
 		for(i=0;i<il;i++)
 		{
-			printf("%c",tab2[i]);
+			printf("%c",slowo2[i]);
 		}
-		printf("\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n",gracz2,gracz1);
+		printf("\n\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n\n\n",gracz2,gracz1);
 	}
 	return 0;
 }	
-
-
