@@ -4,7 +4,7 @@
 #include "f_obrazek.c"//That function is drawing image.
 
 /* [c] Jakub Mosakowski 12.2016
-	Simple game: "Hangman" - "Wisielec"
+	Simple game: "Hangman - Wisielec"
 */
 int main()
 {
@@ -12,17 +12,20 @@ int main()
 	char gracz1[20],gracz2[20],slowo[30];
 	int i,il=0,licz,proba=10,flaga=0,flaga2=0;
 
+	for(i=0;i<200;i++)// Clearing screen.
+		printf("\n");	
 	for(i=0;i<30;i++)
 		slowo[i]='_';
-	printf("\n\nWitaj w grze \"Hangman\" - \"Wisielec\".\n");
-	printf("	Życzę Ci dobrej zabawy!\n\n");
+	printf("\n\n	Witaj w grze \"Hangman - Wisielec\".\n");
+	printf("		Życzę Ci dobrej zabawy!\n\n");
+	printf("\nGracz numer 1 wymyśla hasło, gracz numer 2 je zgaduje.\n");
 	printf("Podaj nazwę gracza numer 1:");
 	scanf("%s",gracz1);
 	while('\n'!=getchar());
 	printf("Podaj nazwę gracza numer 2:");
 	scanf("%s",gracz2);
 	while('\n'!=getchar());
-	printf("%s podaj jedno słowo:",gracz1);
+	printf("%s podaj jedno słowo, które będzie zgadywał/a %s:",gracz1,gracz2);
 
 	do{//Checking input = is it letter or not.
 		il=0;
@@ -53,16 +56,20 @@ int main()
 	}
 	while('\n'!=getchar());
 
-	for(i=0;i<250;i++)// Clearing screen.
+	for(i=0;i<200;i++)// Clearing screen.
 		printf("\n");
 	printf("%s masz %d prób.\n",gracz2,proba);
+	printf("Ilość liter w słowie podanym przez gracza %s:%d.\nHasło: ",gracz1,il);
+	for(i=0;i<il;i++)
+		printf("%c",pustaTab[i]);
+	printf("\n");
 	while(proba>0)
 	{
 		printf("%s podaj jedną literę: ",gracz2);
 		lit = getchar();
 		while('\n'!=getchar());
 		while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
-			printf("Powinieneś podać literę! Spróbuj ponownie:");
+			printf("Możesz podawać tylko litery! Spróbuj ponownie:");
 			lit = getchar();
 			while('\n'!=getchar());
 		}
@@ -102,7 +109,7 @@ int main()
 		else
 		{
 			printf("\n\n-------------------------------------------------\n\n");
-			printf("\nGratulacje, zgadłeś!\n%s wygrywa!\n\n\n",gracz2);
+			printf("\nGratulacje, zgadłeś/aś!\n%s wygrywa!\n\n\n",gracz2);
 			proba=-1;
 		}
 	}
@@ -115,5 +122,8 @@ int main()
 		}
 		printf("\n\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n\n\n",gracz2,gracz1);
 	}
+	printf("			Game \"Hangman - Wisielec\" programmed by Jakub Mosakowski.(c)\n");
+	printf("				mosakowskijakubsm@gmail.com\n\n");
+
 	return 0;
 }	
