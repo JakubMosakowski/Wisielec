@@ -2,6 +2,8 @@
 #include<string.h>
 #include<ctype.h>
 #include "f_obrazek.c"//That function is drawing image.
+#include "f_wyborGracza.c"//That function is letting player to choose game mode.
+#include "f_stopka.c"//That function is printing ending.
 
 /* [c] Jakub Mosakowski 12.2016
 	Simple game: "Hangman - Wisielec"
@@ -10,14 +12,23 @@ int main()
 {
 	char lit;
 	char gracz1[20],gracz2[20],slowo[30];
-	int i,il=0,licz,proba=10,flaga=0,flaga2=0;
+	int i,il=0,licz,proba=10,flaga=0,flaga2=0,wybor1;
 
 	for(i=0;i<200;i++)// Clearing screen.
 		printf("\n");	
 	for(i=0;i<30;i++)
 		slowo[i]='_';
-	printf("\n\n	Witaj w grze \"Hangman - Wisielec\".\n");
-	printf("		Życzę Ci dobrej zabawy!\n\n");
+	printf("\n\n\t\t\tWitaj w grze \"Hangman - Wisielec\".\n");
+	printf("\t\t\t\tŻyczę Ci dobrej zabawy!\n\n");
+	wybor1=f_wyborGracza();
+	if(wybor1==1){
+	//tu wprowadzić funkcja do gry dla jednego gracza.
+		printf("Naciśnij enter aby zakończyć.");
+		while('\n'!=getchar());
+	}
+	else if(wybor1==2){
+	for(i=0;i<200;i++)// Clearing screen.
+		printf("\n");	
 	printf("\nGracz numer 1 wymyśla hasło, gracz numer 2 je zgaduje.\n");
 	printf("Podaj nazwę gracza numer 1:");
 	scanf("%s",gracz1);
@@ -101,7 +112,7 @@ int main()
 		{
 			printf("%c",pustaTab[i]);
 		}		
-		if( strcmp(slowo2,pustaTab)!=0 )
+		if( strcmp(slowo,pustaTab)!=0 )
 		{
 			printf("\n\nZostało Ci %d prób.\n\n",proba);
 			printf("-------------------------------------------------\n\n");
@@ -122,8 +133,9 @@ int main()
 		}
 		printf("\n\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n\n\n",gracz2,gracz1);
 	}
-	printf("			Game \"Hangman - Wisielec\" programmed by Jakub Mosakowski.(c)\n");
-	printf("				mosakowskijakubsm@gmail.com\n\n");
-
+		printf("Naciśnij enter aby zakończyć.");
+		while('\n'!=getchar());
+	}
+		f_stopka();//POPRAW PRZESUNIĘCIE.
 	return 0;
 }	
