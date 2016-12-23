@@ -6,6 +6,7 @@
 #include "f_wyborGracza.c"//That function is letting player to choose game mode.
 #include "f_stopka.c"//That function is printing ending.
 #include "f_clear.c"//That function is clearing screen.
+#include "f_playButton.c"//That function is drawing starting image.
 
 /* [c] Jakub Mosakowski 12.2016
 	Simple game: "Hangman - Wisielec"
@@ -20,7 +21,9 @@ int main()
 	for(i=0;i<30;i++)
 		slowo[i]='_';
 	printf("\n\n\t\t\tWitaj w grze \"Hangman - Wisielec\".\n");
-	printf("\t\t\t\tŻyczę Ci dobrej zabawy!\n\n");
+	printf("\t\t\t\tŻyczę Ci dobrej zabawy!");
+	f_playButton();
+	f_clear();
 	wybor1=f_wyborGracza();
 	if(wybor1==1){
 	//tu wprowadzić funkcja do gry dla jednego gracza.
