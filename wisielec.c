@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
+#include<unistd.h>//Library which allows to hide password.
 #include "f_obrazek.c"//That function is drawing image.
 #include "f_wyborGracza.c"//That function is letting player to choose game mode.
 #include "f_stopka.c"//That function is printing ending.
@@ -12,8 +13,8 @@
 int main()
 {
 	char lit;
-	char gracz1[20],gracz2[20],slowo[30];
-	int i,il=0,licz,proba=10,flaga=0,flaga2=0,wybor1;
+	char gracz1[20],gracz2[20],*slowoH,slowo[30];
+	int i,il=0,licz,proba=10,flaga=0,flaga2=0,flagDiff,wybor1;
 
 	f_clear();
 	for(i=0;i<30;i++)
@@ -38,8 +39,10 @@ int main()
 		do{//Checking input = is it letter or not.
 			il=0;
 			if(flaga==1 || flaga2==1)
-				printf("Twoje słowo może zawierać tylko litery! Podaj je ponownie:");
-			scanf("%s",slowo);
+				printf("Twoje słowo może zawierać tylko litery, takie które nie mają polskich znaków! Podaj je ponownie:");
+			slowoH = getpass("");
+			for(i=0;i<30;i++)
+				slowo[i]=slowoH[i];
 			flaga=0;
 			flaga2=0;
 			for(i=0;i<30;i++){
@@ -55,14 +58,13 @@ int main()
 				if(slowo[i]=='_')
 					flaga2=1;
 		}while(flaga==1 || flaga2==1);
-		char slowo2[il],pustaTab[il];
+		char slowo2[il+1],pustaTab[il];
 
 		for(i=0;i<il;i++){// From lower case to upper case.
 			slowo[i]=toupper(slowo[i]);
 			slowo2[i]=slowo[i];
 			pustaTab[i]='_';
 		}
-		while('\n'!=getchar());
 	
 		f_clear();
 		printf("%s masz %d prób.\n",gracz2,proba);
@@ -75,7 +77,7 @@ int main()
 			lit = getchar();
 			while('\n'!=getchar());
 			while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
-				printf("Możesz podawać tylko litery! Spróbuj ponownie:");
+				printf("Możesz podawać tylko litery, takie które nie zawierają polskich znaków! Spróbuj ponownie:");
 				lit = getchar();
 				while('\n'!=getchar());
 			}
@@ -101,8 +103,13 @@ int main()
 			printf("Hasło: ");
 			for(i=0;i<il;i++){
 				printf("%c",pustaTab[i]);
+			}
+			flagDiff=0;
+			for(i=0;i<il;i++){
+				if(slowo2[i]!=pustaTab[i])
+					flagDiff=1;
 			}		
-			if( strcmp(slowo,pustaTab)!=0 ){
+			if( flagDiff!=0 ){
 				printf("\n\nZostało Ci %d prób.\n\n",proba);
 				printf("-------------------------------------------------\n\n");
 			}
