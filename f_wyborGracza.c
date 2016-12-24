@@ -10,7 +10,7 @@ int f_wyborGracza(){
 		printf("Podaj cyfrę i naciśnij enter:\n");
 		scanf("%c",&gameMode);
 		if(gameMode!='1' && gameMode!='2' && gameMode!='3'){
-			for(i=0;i<100;i++)
+			for(i=0;i<200;i++)
 				printf("\n");
 			printf("Nie podałeś poprawnej cyfry!\n");
 		}
