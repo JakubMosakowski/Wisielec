@@ -1,16 +1,13 @@
 1.Dodatki wymagające wprowadzenia:
-	-Dołącz obrazek	playButtonPic.c 
-	-Możliwość rysowania podpowiedzi(np. po piątej nie udanej próbie).
-		a)Rysowanie strzałkami(robimy tablicę dwuwymiarową np 50x50,
-		 i korzystamy z programu który był na wykładzie,strzałkami jeżdzimy jak pędzlem.C czyści obrazek).
-		b)Niech pyta czy chcemy rysować(funkcja switch).
-		c)Niech powiedzmy klawisz 1 maluje na 'x' a klawisz 2 na ' '.
-	-Niech nie pokazuje wpisywanego słowa(ukrycie jak podczas wpisywania hasła w sigmie).
-	-Dodanie trybu dla pojedyńczego gracza (funkcja switch?).
+	-Możliwość rysowania podpowiedzi(np. po piątej nie udanej próbie). //TO NIEWAŻNE.
+		a)Rysowanie strzałkami(robimy tablicę dwuwymiarową np 50x50,//
+		 i korzystamy z programu który był na wykładzie,strzałkami jeżdzimy jak pędzlem.C czyści obrazek).//
+		b)Niech pyta czy chcemy rysować(funkcja switch).//
+		c)Niech powiedzmy klawisz 1 maluje na 'x' a klawisz 2 na ' './/
+	-Dodanie trybu dla pojedyńczego gracza.
 		a)W trybie dla pojedyńczego gracza dodaj kategorie(np. Kraje, zwierzęta, itd.).
-		b)Do każdej kategorii dodaj powiedzmy po 10 słów spośród któryś funkcja random będzie losować słowa.
 	-Zaimplementuj polskie znaki.
-	-Zaimplementuj opcję "Spróbuj ponownie!".
 
 2.Blędy do poprawienia: 
-	-BRAK :).
+	-Poprawa wcięć.
+	-Przydadzą się mocne testy.
