@@ -2,9 +2,11 @@
 void f_multiplayer(){
 
 	char lit;
-	char gracz1[20],gracz2[20],*slowoH,slowo[30];
+	char gracz1[20],gracz2[20],*slowoH,slowo[30],uLit[10];
 	int i,il=0,licz,proba=10,flaga=0,flaga2=0,flagDiff;
-
+	
+	for(i=0;i<10;i++)
+		uLit[i]=' ';
 	for(i=0;i<30;i++)
 		slowo[i]='_';
 		f_clear();
@@ -75,6 +77,8 @@ void f_multiplayer(){
 			if(licz<1){
 				printf("\nNie ma litery %c. \n",lit);
 				proba=proba-1;
+				if(proba>0)
+					uLit[proba]=lit;
 				f_obrazek(proba);
 			}
 			else{
@@ -85,6 +89,9 @@ void f_multiplayer(){
 			for(i=0;i<il;i++){
 				printf("%c",pustaTab[i]);
 			}
+			printf("\nLitery których nie ma w wyrazie: ");
+			for(i=9;i>=0;i--)
+				printf("%c ",uLit[i]);
 			flagDiff=0;
 			for(i=0;i<il;i++){
 				if(slowo2[i]!=pustaTab[i])

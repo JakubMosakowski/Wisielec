@@ -26,8 +26,8 @@ int main()
 	printf("\t\t\t\tŻyczę Ci dobrej zabawy!");
 	f_playButton();
 	f_clear();
-	wybor1=f_wyborGracza();
 	while(x==1){//playagain function.
+	wybor1=f_wyborGracza();
 	if(wybor1==1){
 		f_singleplayer();
 	}
@@ -35,9 +35,9 @@ int main()
 		f_multiplayer();
 	}
 	x=f_playagain(wybor1);
+	while('\n'!=getchar());
 	f_clear();
-	printf("TEST %d TEST",x);
 	}
-	f_stopka();
+	f_stopka(wybor1,x);
 	return 0;
 }	

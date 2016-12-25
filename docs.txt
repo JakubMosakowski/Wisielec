@@ -7,7 +7,8 @@
 	-Dodanie trybu dla pojedyńczego gracza.
 		a)W trybie dla pojedyńczego gracza dodaj kategorie(np. Kraje, zwierzęta, itd.).
 	-Zaimplementuj polskie znaki.
-
+	-Niech program sprawdza czy gracz już wpisał daną literę.(dodatkowa tablica w którą wpisuje się litery i potem podczas
+	wpisywania kolejnej litery, niech sprawdza czy nie ma tej litery w talibcy dodatkowej).
 2.Blędy do poprawienia: 
 	-Poprawa wcięć.
 	-Przydadzą się mocne testy.

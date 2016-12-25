@@ -2,7 +2,7 @@
 void f_singleplayer(){
 
 	srand(time(NULL));
-	char gracz2[30],wybor1,gracz1[]={"Komputer"},lit;
+	char gracz2[30],wybor1,gracz1[]={"Komputer"},lit,uLit[10];
 	int wybor1int,x,i,il,licz,flagDiff,proba=10;
 	char kraje[57][13]={"Polska","Rosja","Niemcy","Holandia","Australia","Norwegia","Litwa","Kanada","Boliwia","Honduras","Afganistan","Albania","Algieria","Argentyna","Armenia","Austria","Bangladesz","Belgia","Chile","Chiny","Czechy","Dania","Egipt","Ekwador","Estonia","Etiopia","Finlandia","Francja","Grecja","Hiszpania","Indie","Irak","Iran","Irlandia","Islandia","Izrael","Japonia","Kenia","Kolumbia","Kostaryka","Kuba","Kuwejt","Libia","Lichtenstein","Luksemburg","Malezja","Maroko","Meksyk","Pakistan","Paragwaj","Peru","Portugalia","Szwecja","Ukraina","Urugwaj","Wietnam"};
 /*	char miasta[][]={};
@@ -10,6 +10,8 @@ void f_singleplayer(){
 	char rosliny[][]={};
 	char przedmioty[][]={};	
 */
+	for(i=0;i<10;i++)
+		uLit[i]=' ';
 	printf("Podaj nazwę gracza: ");
 	scanf("%s",gracz2);
 	while('\n'!=getchar());
@@ -85,6 +87,8 @@ while(1==1){
 			if(licz<1){
 				printf("\nNie ma litery %c. \n",lit);
 				proba=proba-1;
+				if(proba>0)
+					uLit[proba]=lit;
 				f_obrazek(proba);
 			}
 			else{
@@ -95,6 +99,10 @@ while(1==1){
 			for(i=0;i<il;i++){
 				printf("%c",pustaTab[i]);
 			}
+			
+			printf("\nLitery których nie ma w wyrazie:  ");
+			for(i=9;i>=0;i--)
+				printf("%c ",uLit[i]);
 			flagDiff=0;
 			for(i=0;i<il;i++){
 				if(slowo2[i]!=pustaTab[i])
