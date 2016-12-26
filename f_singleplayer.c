@@ -2,14 +2,14 @@
 void f_singleplayer(){
 
 	srand(time(NULL));
-	char gracz2[30],wybor1,gracz1[]={"Komputer"},lit,uLit[10];
-	int wybor1int,x,i,il,licz,flagDiff,proba=10;
+	char gracz2[30],wybor1,gracz1[]={"Komputer"},lit,uLit[10],*wybrane;
+	int wybor1int,x,i,il,licz,flagDiff,flagUsed,proba=10,y;
 	char kraje[57][13]={"Polska","Rosja","Niemcy","Holandia","Australia","Norwegia","Litwa","Kanada","Boliwia","Honduras","Afganistan","Albania","Algieria","Argentyna","Armenia","Austria","Bangladesz","Belgia","Chile","Chiny","Czechy","Dania","Egipt","Ekwador","Estonia","Etiopia","Finlandia","Francja","Grecja","Hiszpania","Indie","Irak","Iran","Irlandia","Islandia","Izrael","Japonia","Kenia","Kolumbia","Kostaryka","Kuba","Kuwejt","Libia","Lichtenstein","Luksemburg","Malezja","Maroko","Meksyk","Pakistan","Paragwaj","Peru","Portugalia","Szwecja","Ukraina","Urugwaj","Wietnam"};
-/*	char miasta[][]={};
-	char zwierzeta[][]={};
-	char rosliny[][]={};
-	char przedmioty[][]={};	
-*/
+	char miasta[19][10]={"Warszawa","Krakow","Wroclaw","Poznan","Gdansk","Szczecin","Bydgoszcz","Lublin","Katowice","Gdynia","Sopot","Radom","Sosnowiec","Kielce","Torun","Gliwice","Olsztyn","Bytom","Rybnik"};
+	char rosliny[15][10]={"Kwiatek","Kwiat","Koniczyna","Kaktus","Trawa","Banan","Krzak","Mech","Choinka","Drzewo","Sosna","Kapusta","Orzech","Paprotka","Tulipan"};
+	char zwierzeta[26][10]={"Pies","Lew","Pingwin","Koza","Kura","Kogut","Kura","Baran","Byk","Krowa","Kret","Biedronka","Motyl","Tygrys","Delfin","Zebra","Okapi","Ryba","Karp","Goryl","Szympans","Orangutan","Paw","Papuga","Foka","Kot"};
+	char przedmioty[17][11]={"Paznokcie","Koszula","Spodnie","Chusteczki","Kieliszek","Lakier","Kotlet","Talerz","Kleks","Drzwi","Cukierek","Czekolada","Ubranie","Cukier","Kaloryfer","Ciasto","Kisiel"};	
+
 	for(i=0;i<10;i++)
 		uLit[i]=' ';
 	printf("Podaj nazwę gracza: ");
@@ -31,48 +31,84 @@ while(1==1){
 		switch(wybor1int){
 			case 1:
 			x=rand()%57;
+			wybrane=*(kraje+x);
+			y=1;
 			break;
-/*
+
 			case 2:
-			x=rand()%;
+			x=rand()%19;
+			wybrane=*(miasta+x);
+			y=2;
 			break;
 
 			case 3:
-			x=rand()%;
+			x=rand()%26;
+			wybrane=*(zwierzeta+x);
+			y=3;
 			break;
 
 			case 4:
-			x=rand()%;
+			x=rand()%15;
+			wybrane=*(rosliny+x);
+			y=4;
 			break;
 
 			case 5:
-			x=rand()%;
+			x=rand()%17;
+			wybrane=*(przedmioty+x);
+			y=5;
 			break;
-*/		}
+		}
 	break;
 	}
-}	il = strlen(kraje[x]);
-	char slowo2[il+1],pustaTab[il+1];	
+}
+		il = strlen(wybrane);
+		char slowo2[il+1],pustaTab[il+1];	
 		for(i=0;i<il;i++){// From lower case to upper case.
-			kraje[x][i]=toupper(kraje[x][i]);
-			slowo2[i]=kraje[x][i];
+			wybrane[i]=toupper(wybrane[i]);
+			slowo2[i]=wybrane[i];
 			pustaTab[i]='_';
 		}
-	
 		f_clear();
 		printf("%s masz %d prób.\n",gracz2,proba);
 		printf("Ilość liter w słowie podanym przez %s:%d.\nHasło: ",gracz1,il);
 		for(i=0;i<il;i++)
 			printf("%c",pustaTab[i]);
-		printf("\n");
+		printf("\nKategoria: ");
+		if(y==1)
+			printf("Kraje\n");
+		if(y==2)
+			printf("Miasta Polski\n");
+		if(y==3)
+			printf("Zwierzęta\n");
+		if(y==4)
+			printf("Rośliny\n");
+		if(y==5)
+			printf("Przedmioty\n");
 		while(proba>0){
 			printf("%s podaj jedną literę: ",gracz2);
 			lit = getchar();
 			while('\n'!=getchar());
-			while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
-				printf("Możesz podawać tylko litery, takie które nie zawierają polskich znaków! Spróbuj ponownie:");
-				lit = getchar();
-				while('\n'!=getchar());
+			flagUsed=1;
+			lit = toupper(lit);
+			while(flagUsed==1){
+				flagUsed=0;
+				for(i=0;i<10;i++)
+					if(lit==uLit[i])
+						flagUsed=1;
+				if(flagUsed==1){
+					printf("\nUżyłeś już tej litery! Podaj inną:");
+					lit = getchar();
+					lit = toupper(lit);
+					while('\n'!=getchar());
+				}
+				while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
+					printf("Możesz podawać tylko litery, takie które nie zawierają polskich znaków! Spróbuj ponownie:");
+					lit = getchar();
+					flagUsed=1;
+					lit = toupper(lit);
+					while('\n'!=getchar());
+				}
 			}
 			lit = toupper(lit);
 			licz=0;
@@ -86,10 +122,10 @@ while(1==1){
 			}
 			if(licz<1){
 				printf("\nNie ma litery %c. \n",lit);
+				f_obrazek(proba);
 				proba=proba-1;
 				if(proba>0)
 					uLit[proba]=lit;
-				f_obrazek(proba);
 			}
 			else{
 				printf("\nLitera %c jest w wyrazie.\nIlość: %d\n",lit,licz);	

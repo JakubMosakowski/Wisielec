@@ -1,14 +1,11 @@
 1.Dodatki wymagające wprowadzenia:
-	-Możliwość rysowania podpowiedzi(np. po piątej nie udanej próbie). //TO NIEWAŻNE.
+	-Możliwość rysowania podpowiedzi(np. po piątej nie udanej próbie). //NIEWAŻNE.
 		a)Rysowanie strzałkami(robimy tablicę dwuwymiarową np 50x50,//
 		 i korzystamy z programu który był na wykładzie,strzałkami jeżdzimy jak pędzlem.C czyści obrazek).//
 		b)Niech pyta czy chcemy rysować(funkcja switch).//
 		c)Niech powiedzmy klawisz 1 maluje na 'x' a klawisz 2 na ' './/
-	-Dodanie trybu dla pojedyńczego gracza.
-		a)W trybie dla pojedyńczego gracza dodaj kategorie(np. Kraje, zwierzęta, itd.).
-	-Zaimplementuj polskie znaki.
-	-Niech program sprawdza czy gracz już wpisał daną literę.(dodatkowa tablica w którą wpisuje się litery i potem podczas
-	wpisywania kolejnej litery, niech sprawdza czy nie ma tej litery w talibcy dodatkowej).
+	-Zaimplementuj polskie znaki.//NIEWAŻNE
+	-Wersja "do klikania".
 2.Blędy do poprawienia: 
 	-Poprawa wcięć.
 	-Przydadzą się mocne testy.

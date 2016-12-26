@@ -3,7 +3,7 @@ void f_multiplayer(){
 
 	char lit;
 	char gracz1[20],gracz2[20],*slowoH,slowo[30],uLit[10];
-	int i,il=0,licz,proba=10,flaga=0,flaga2=0,flagDiff;
+	int i,il=0,licz,proba=10,flaga=0,flaga2=0,flagDiff,flagUsed;
 	
 	for(i=0;i<10;i++)
 		uLit[i]=' ';
@@ -59,10 +59,26 @@ void f_multiplayer(){
 			printf("%s podaj jedną literę: ",gracz2);
 			lit = getchar();
 			while('\n'!=getchar());
-			while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
-				printf("Możesz podawać tylko litery, takie które nie zawierają polskich znaków! Spróbuj ponownie:");
-				lit = getchar();
-				while('\n'!=getchar());
+			lit = toupper(lit);
+			flagUsed=1;
+			while(flagUsed==1){
+				flagUsed=0;
+				for(i=0;i<10;i++)
+					if(lit==uLit[i])
+						flagUsed=1;
+				if(flagUsed==1){
+					printf("\nUżyłeś już tej litery! Podaj inną:");
+					lit = getchar();
+					lit = toupper(lit);
+					while('\n'!=getchar());
+				}
+				while(!((lit>96 && lit<123) || (lit>64 && lit<91))){//Checking input is it letter or not.
+					printf("Możesz podawać tylko litery, takie które nie zawierają polskich znaków! Spróbuj ponownie:");
+					lit = getchar();
+					lit = toupper(lit);
+					flagUsed=1;
+					while('\n'!=getchar());
+				}
 			}
 			lit = toupper(lit);
 			licz=0;
@@ -76,10 +92,10 @@ void f_multiplayer(){
 			}
 			if(licz<1){
 				printf("\nNie ma litery %c. \n",lit);
+				f_obrazek(proba);
 				proba=proba-1;
 				if(proba>0)
 					uLit[proba]=lit;
-				f_obrazek(proba);
 			}
 			else{
 				printf("\nLitera %c jest w wyrazie.\nIlość: %d\n",lit,licz);	
