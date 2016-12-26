@@ -101,7 +101,7 @@ void f_multiplayer(){
 				printf("\nLitera %c jest w wyrazie.\nIlość: %d\n",lit,licz);	
 				f_obrazek(proba);
 			}
-			printf("Hasło: ");
+			printf("Ilość liter w słowie podanym przez %s:%d.\nHasło: ",gracz1,il);
 			for(i=0;i<il;i++){
 				printf("%c",pustaTab[i]);
 			}

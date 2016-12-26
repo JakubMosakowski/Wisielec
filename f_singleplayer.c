@@ -74,19 +74,8 @@ while(1==1){
 		printf("Ilość liter w słowie podanym przez %s:%d.\nHasło: ",gracz1,il);
 		for(i=0;i<il;i++)
 			printf("%c",pustaTab[i]);
-		printf("\nKategoria: ");
-		if(y==1)
-			printf("Kraje\n");
-		if(y==2)
-			printf("Miasta Polski\n");
-		if(y==3)
-			printf("Zwierzęta\n");
-		if(y==4)
-			printf("Rośliny\n");
-		if(y==5)
-			printf("Przedmioty\n");
 		while(proba>0){
-			printf("%s podaj jedną literę: ",gracz2);
+			printf("\n%s podaj jedną literę: ",gracz2);
 			lit = getchar();
 			while('\n'!=getchar());
 			flagUsed=1;
@@ -131,7 +120,18 @@ while(1==1){
 				printf("\nLitera %c jest w wyrazie.\nIlość: %d\n",lit,licz);	
 				f_obrazek(proba);
 			}
-			printf("Hasło: ");
+			printf("\nKategoria: ");
+			if(y==1)
+				printf("Kraje\n");
+			if(y==2)
+				printf("Miasta Polski\n");
+			if(y==3)
+				printf("Zwierzęta\n");
+			if(y==4)
+				printf("Rośliny\n");
+			if(y==5)
+				printf("Przedmioty\n");
+			printf("Ilość liter w słowie podanym przez %s:%d.\nHasło: ",gracz1,il);
 			for(i=0;i<il;i++){
 				printf("%c",pustaTab[i]);
 			}
