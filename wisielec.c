@@ -19,25 +19,25 @@
 
 int main()
 {
-	int wybor1,x=1;
+    int wybor1,x=1;
 
-	f_clear();
-	printf("\n\n\t\t\tWitaj w grze \"Hangman - Wisielec\".\n");
-	printf("\t\t\t\tŻyczę Ci dobrej zabawy!");
-	f_playButton();
-	f_clear();
-	while(x==1){//playagain function.
-	wybor1=f_wyborGracza();
-	if(wybor1==1){
-		f_singleplayer();
-	}
-	else if(wybor1==2){
-		f_multiplayer();
-	}
-	x=f_playagain(wybor1);
-	while('\n'!=getchar());
-	f_clear();
-	}
-	f_stopka(wybor1,x);
-	return 0;
-}	
+    f_clear();
+    printf("\n\n\t\t\tWitaj w grze \"Hangman - Wisielec\".\n");
+    printf("\t\t\t\tŻyczę Ci dobrej zabawy!");
+    f_playButton();
+    f_clear();
+    while(x==1) { //playagain function.
+        wybor1=f_wyborGracza();
+        if(wybor1==1) {
+            f_singleplayer();
+        }
+        else if(wybor1==2) {
+            f_multiplayer();
+        }
+        x=f_playagain(wybor1);
+        while('\n'!=getchar());
+        f_clear();
+    }
+    f_stopka(wybor1,x);
+    return 0;
+}
