@@ -111,8 +111,8 @@ void f_singleplayer() {
         }
         if(licz<1) {
             printf("\nNie ma litery %c. \n",lit);
-            f_obrazek(proba);
             proba=proba-1;
+            f_obrazek(proba);
             if(proba>0)
                 uLit[proba]=lit;
         }
