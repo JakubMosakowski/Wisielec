@@ -7,8 +7,9 @@ void f_multiplayer() {
 
     for(i=0; i<10; i++)
         uLit[i]=' ';
-    for(i=0; i<30; i++)
+    for(i=0; i<30; i++){
         slowo[i]='_';
+    }
     f_clear();
     printf("\nGracz numer 1 wymyśla hasło, gracz numer 2 je zgaduje.\n");
     printf("Podaj nazwę gracza numer 1:");
@@ -23,9 +24,11 @@ void f_multiplayer() {
         il=0;
         if(flaga==1 || flaga2==1)
             printf("Twoje słowo może zawierać tylko litery, takie które nie mają polskich znaków! Podaj je ponownie:");
-        slowoH = getpass("");
-        for(i=0; i<30; i++)
-            slowo[i]=slowoH[i];
+        //SPRÓBUJ ZABLOKOWAĆ MOŻLIWOŚĆ KLIKNIĘCIA ENTER
+	slowoH = getpass("");
+        for(i=0; i<30; i++){
+		slowo[i]=slowoH[i];
+	}
         flaga=0;
         flaga2=0;
         for(i=0; i<30; i++) {
@@ -48,8 +51,8 @@ void f_multiplayer() {
         slowo2[i]=slowo[i];
         pustaTab[i]='_';
     }
-
-    f_clear();
+if(il!=0){
+	f_clear();
     printf("%s masz %d prób.\n",gracz2,proba);
     printf("Ilość liter w słowie podanym przez gracza %s:%d.\nHasło: ",gracz1,il);
     for(i=0; i<il; i++)
@@ -130,4 +133,7 @@ void f_multiplayer() {
         }
         printf("\n\n%s, niestety, nie udało Ci się zgadnąć :(.\nWygrywa %s!\n\n\n",gracz2,gracz1);
     }
+   }else{
+   	printf("Twoje słowo miało 0 liter!");
+   }
 }

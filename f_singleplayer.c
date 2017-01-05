@@ -1,6 +1,7 @@
 
 void f_singleplayer() {
 
+	f_clear();
     srand(time(NULL));
     char gracz2[30],wybor1,gracz1[]= {"Komputer"},lit,uLit[10],*wybrane;
     int wybor1int,x,i,il,licz,flagDiff,flagUsed,proba=10,y;
@@ -18,9 +19,8 @@ void f_singleplayer() {
     f_clear();
     while(1==1) {
         printf("\n\n1.)Kraje\n2.)Polskie miasta\n3.)Zwierzęta\n4.)Rośliny\n5.)Przedmioty");
-        printf("\n%s wybierz kategorię (wpisz cyfrę i naciśnij enter).\n",gracz2);
-        scanf("%c",&wybor1);
-        while('\n'!=getchar());
+        printf("\n%s wybierz kategorię (wpisz cyfrę).\n",gracz2);
+        wybor1=getch();
 
         if(wybor1!='1' && wybor1!='2' && wybor1!='3' && wybor1!='4' && wybor1!='5') {
             for(i=0; i<200; i++)

@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<termios.h>
 #include<ctype.h>
 #include<time.h>
 #include<stdlib.h>
@@ -12,7 +13,6 @@
 #include "f_singleplayer.c"//This function is main singleplayer module.
 #include "f_multiplayer.c"//This function is main multiplayer module.
 #include "f_playagain.c"//This function is adding play again feature.
-
 /* [c] Jakub Mosakowski 12.2016
 	Simple game: "Hangman - Wisielec"
 */
@@ -35,7 +35,6 @@ int main()
             f_multiplayer();
         }
         x=f_playagain(wybor1);
-        while('\n'!=getchar());
         f_clear();
     }
     f_stopka(wybor1,x);

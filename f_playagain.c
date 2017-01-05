@@ -7,9 +7,9 @@ int f_playagain(int quit) {
         while(1==1) {
             printf("\n\nAby zagrać ponownie wpisz \'1\'.\n");
             printf("Aby wyjść wpisz \'2\'.\n\n");
-            printf("Podaj cyfrę i naciśnij enter:\n");
-            scanf("%c",&gameMode);
-            if(gameMode!='1' && gameMode!='2') {
+            printf("Podaj cyfrę:\n");
+            gameMode=getch();
+	    if(gameMode!='1' && gameMode!='2') {
                 for(i=0; i<200; i++)
                     printf("\n");
                 printf("Nie podałeś poprawnej cyfry!\n");
