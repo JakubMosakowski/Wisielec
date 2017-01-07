@@ -2,8 +2,12 @@
 void f_multiplayer() {
 
     char lit;
-    char gracz1[20],gracz2[20],*slowoH,slowo[30],uLit[10];
+    char gracz1[20],gracz2[20],slowo[30],uLit[10];
     int i,il=0,licz,proba=10,flaga=0,flaga2=0,flagDiff,flagUsed;
+
+    char *slowoH =  malloc(sizeof(char) * 30);
+    for(i=0;i<30;i++)
+	    slowoH[i]='%';
 
     for(i=0; i<10; i++)
         uLit[i]=' ';
@@ -136,4 +140,5 @@ if(il!=0){
    }else{
    	printf("Twoje słowo miało 0 liter!");
    }
+free(slowoH);
 }
