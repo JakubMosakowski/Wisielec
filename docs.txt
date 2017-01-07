@@ -9,5 +9,3 @@
 
 2.Blędy do poprawienia: 
 	-Przydadzą się mocne testy.
-	-W f_multiplayer.c podczas ponownej gry zostają śmieci z poprzedniej.
-		Dopytaj o to kogoś.
